@@ -1,14 +1,21 @@
-const jokeContainer = document.getElementById("listjoke");
+// getting html element using document object
+const jokeBox = document.getElementById("listjoke");
 const btn = document.getElementById("btn");
-const url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
-let getJoke = () => {
-    jokeContainer.classList.remove("fade");
-    fetch(url)
+
+// storing api url
+const api_url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+let getJokeList = () => {
+    jokeBox.classList.remove("fade");
+    fetch(api_url)
     .then(data => data.json())
     .then(item =>{
-        jokeContainer.textContent = `${item.joke}`;
-        jokeContainer.classList.add("fade");
+        jokeBox.textContent = `${item.joke}`;
+        jokeBox.classList.add("fade");
     });
 }
-btn.addEventListener("click",getJoke);
-getJoke();
+
+// handling event
+btn.addEventListener("click",getJokeList);
+
+// invoking function
+getJokeList();
